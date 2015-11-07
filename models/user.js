@@ -20,7 +20,7 @@ module.exports = {
         
         courses: {
             collection: 'course',
-            via: 'user'
+            via: 'users'
         },
         
         validPassword: function (password) {

@@ -1,0 +1,24 @@
+<h1 style="text-align: center">Tárgyaim</h1>
+
+
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Tárgy</th>
+      <th>Helyszín </th>
+      <th>Időpont</th>
+      <th>Tanár</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each courses as |course|}}
+    <tr>
+        <td>{{course.subject.subject}}</td>
+        <td>{{course.location}}</td>
+        <td>{{course.time}}</td>
+        <td>{{course.teacher.name}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

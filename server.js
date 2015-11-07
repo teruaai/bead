@@ -36,6 +36,12 @@ app.use(express.static('public'));
 
 //  Passport beállítások --------------------
 
+app.use(session({
+    secret: '{U>tNmbNd1_J/7pwY2[3X[(qz!',
+    resave: false,
+    saveUninitialized: false,
+}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -58,7 +64,16 @@ passport.use('local-signup', new LocalStrategy({
                 return done(null, false, { message: 'A megadott felhasználónév már létezik.' });
             }
             
-            req.app.models.user.create(req.body)
+            if (req.body['password'] !== req.body['password-confirm']) {
+                return done(null, false, { message: 'A megadott két jelszó nem egyezik.' });
+            }
+            
+            var user = {};
+            user.username = username;
+            user.password = password;
+            user.name = req.body.firstname + ' ' + req.body.lastname;
+            
+            req.app.models.user.create(user)
             .then(function (user) {
                 return done(null, user);
             })
@@ -80,7 +95,7 @@ passport.use('local-signin', new LocalStrategy({
             if (err) { return done(err); }
             
             if (!user || !user.validPassword(password)) {
-                return done(null, false, { message: 'Helytelen adatok.' });
+                return done(null, false, { message: 'Hibás felhasználónév vagy jelszó!' });
             }
             return done(null, user);
         });
@@ -100,6 +115,7 @@ function setLocalsForLayout() {
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) { return next(); }
+    req.flash('info', 'A weboldal eléréséhez jelentkezzen be!');
     res.redirect('/auth/login');
 }
 
@@ -120,11 +136,6 @@ function andRestrictTo(role) {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
-app.use(session({
-    secret: '{U>tNmbNd1_J/7pwY2[3X[(qz!',
-    resave: false,
-    saveUninitialized: false,
-}));
 
 app.use(flash());
 
