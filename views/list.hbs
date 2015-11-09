@@ -9,6 +9,7 @@
       <th>Helyszín </th>
       <th>Időpont</th>
       <th>Tanár</th>
+      <th>#</th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +19,11 @@
         <td>{{course.location}}</td>
         <td>{{course.time}}</td>
         <td>{{course.teacher.name}}</td>
+        <td style="width: 90px">
+          <a href="/schedule/delete/{{course.id}}" class="btn btn-primary btn-xs">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          </a>
+        </td>
     </tr>
     {{/each}}
   </tbody>

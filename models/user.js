@@ -20,12 +20,13 @@ module.exports = {
         
         admin: {
             type: 'boolean',
-            required: true,
+            defaultsTo: false
         },
         
         courses: {
             collection: 'course',
-            via: 'users'
+            via: 'users',
+            dominant: true
         },
         
         validPassword: function (password) {

@@ -1,0 +1,151 @@
+{
+  "data": {
+    "course": [],
+    "subject": [],
+    "teacher": [],
+    "user": [
+      {
+        "username": "admin",
+        "password": "$2a$10$JBXaYWsaQgwFTkx.9uzYiekimd7mEDIfwleai./zLBbPq4pOu3Lme",
+        "name": "János Admin",
+        "admin": false,
+        "createdAt": "2015-11-09T23:31:17.264Z",
+        "updatedAt": "2015-11-09T23:31:17.264Z",
+        "id": 1
+      }
+    ],
+    "course_users__user_courses": []
+  },
+  "schema": {
+    "course": {
+      "subject": {
+        "type": "integer",
+        "model": "subject",
+        "foreignKey": true,
+        "alias": "subject"
+      },
+      "teacher": {
+        "type": "integer",
+        "model": "teacher",
+        "foreignKey": true,
+        "alias": "teacher"
+      },
+      "time": {
+        "type": "string"
+      },
+      "location": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "subject": {
+      "subject": {
+        "type": "string"
+      },
+      "credits": {
+        "type": "integer"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "teacher": {
+      "name": {
+        "type": "string"
+      },
+      "room": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "user": {
+      "username": {
+        "type": "string"
+      },
+      "password": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "admin": {
+        "type": "boolean",
+        "defaultsTo": false
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    },
+    "course_users__user_courses": {
+      "id": {
+        "primaryKey": true,
+        "unique": true,
+        "autoIncrement": true,
+        "type": "integer"
+      },
+      "course_users": {
+        "type": "integer",
+        "foreignKey": true,
+        "references": "course",
+        "on": "id",
+        "via": "user_courses"
+      },
+      "user_courses": {
+        "type": "integer",
+        "foreignKey": true,
+        "references": "user",
+        "on": "id",
+        "via": "course_users"
+      }
+    }
+  },
+  "counters": {
+    "course": {},
+    "subject": {},
+    "teacher": {},
+    "user": {
+      "id": 1
+    },
+    "course_users__user_courses": {}
+  }
+}
