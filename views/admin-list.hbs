@@ -1,0 +1,98 @@
+<h1 style="text-align: center">Admin - Lista</h1>
+
+
+<div class="row">
+    <div class="col-lg-3">
+        <h4>Tárgyak</h4>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Név</th>
+              <th>Kredit</th>
+              <th>#</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each subjects as |subject|}}
+            <tr>
+                <td>{{subject.subject}}</td>
+                <td>{{subject.credits}}</td>
+                <td style="width: 90px">
+                    <a href="/admin/edit/subject/{{subject.id}}" class="btn btn-success btn-xs">
+                      <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </a>
+                    
+                    <a href="/admin/delete/subject/{{subject.id}}" class="btn btn-primary btn-xs">
+                      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+    </div>
+    
+    <div class="col-lg-3">
+        <h4>Tanárok</h4>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Név</th>
+              <th>Szoba</th>
+              <th>#</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each teachers as |teacher|}}
+            <tr>
+                <td>{{teacher.name}}</td>
+                <td>{{teacher.room}}</td>
+                <td style="width: 90px">
+                    <a href="/admin/edit/teacher/{{teacher.id}}" class="btn btn-success btn-xs">
+                      <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </a>
+                    
+                    <a href="/admin/delete/teacher/{{teacher.id}}" class="btn btn-primary btn-xs">
+                      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+    </div>
+    
+    <div class="col-lg-6">
+        <h4>Kurzusok</h4>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Tárgy</th>
+              <th>Helyszín</th>
+              <th>Időpont</th>
+              <th>Tanár</th>
+              <th>#</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each courses as |course|}}
+            <tr>
+                <td>{{course.subject.subject}}</td>
+                <td>{{course.location}}</td>
+                <td>{{course.time}}</td>
+                <td>{{course.teacher.name}}</td>
+                <td style="width: 90px">
+                    <a href="/admin/edit/course/{{course.id}}" class="btn btn-success btn-xs">
+                      <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </a>
+                    
+                    <a href="/admin/delete/course/{{course.id}}" class="btn btn-primary btn-xs">
+                      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+    </div>
+</div>

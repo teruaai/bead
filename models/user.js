@@ -18,6 +18,11 @@ module.exports = {
             required: true,
         },
         
+        admin: {
+            type: 'boolean',
+            required: true,
+        },
+        
         courses: {
             collection: 'course',
             via: 'users'

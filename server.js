@@ -30,6 +30,10 @@ var app = express();
 var hbs = require('hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
+hbs.registerHelper('equals', function(left, right) {
+    return left == right;
+});
+
 app.set('view engine', 'hbs');
 app.set('views', './views');
 app.use(express.static('public'));
@@ -119,14 +123,12 @@ function ensureAuthenticated(req, res, next) {
     res.redirect('/auth/login');
 }
 
-function andRestrictTo(role) {
-    return function(req, res, next) {
-        if (req.user.role == role) {
-            next();
-        } else {
-            next(new Error('Unauthorized'));
-        }
+function andRestrictToAdmin(req, res, next) {
+    if (req.user.admin) {
+        return next();
     }
+    
+    return res.status(403).render('error', { status: '403 Forbidden' })
 }
 
 
@@ -150,7 +152,11 @@ app.get('/', function (req, res) {
 
 app.use('/schedule', ensureAuthenticated, scheduleRouter);
 app.use('/auth', authRouter);
-app.use('/admin', adminRouter);
+app.use('/admin', ensureAuthenticated, andRestrictToAdmin, adminRouter);
+
+app.use(function (req, res) {
+    res.render('error', { status: '404 Not Found' });
+})
 
 
 //  Adatbázis ORM beállítások --------------------

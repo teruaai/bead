@@ -1,0 +1,151 @@
+<h1>Admin - Szerkesztés</h1>
+
+
+<div class="row">
+    
+    
+  {{#if editSubject}}
+  <div class="col-md-3">
+    <div class="well bs-component">
+      {{#if subject}}
+      <form class="form-horizontal" method="post" action="/admin/edit/subject/{{subject.id}}">
+        <fieldset>
+          <legend>Tárgy szerkesztése</legend>
+
+          <div class="form-group">
+            <label for="subject-s" class="col-lg-12">tárgynév</label>
+            <div class="col-lg-12">
+              <input type="text" class="form-control" id="subject-s" name="subject" placeholder="tárgynév" value="{{subject.subject}}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="credits" class="col-lg-12">kreditek</label>
+            <div class="col-lg-4">
+              <input type="number" class="form-control" id="credits" name="credits" min="0" max="30" placeholder="kreditek" value="{{subject.credits}}">
+            </div>
+          </div>
+        
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="reset" class="btn btn-default">Mégsem</button>
+              <button type="submit" class="btn btn-primary">Szerkesztés</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      {{else}}
+        <div class="alert alert-danger">
+           A tárgy nem érhető el.
+        </div>
+      {{/if}}
+    </div>
+  </div>
+  {{/if}}
+  
+  
+  {{#if editTeacher}}
+  <div class="col-md-3 col-md-offset-3">
+    <div class="well bs-component">
+      {{#if teacher}}
+      <form class="form-horizontal" method="post" action="/admin/edit/teacher/{{teacher.id}}">
+        <fieldset>
+          <legend>Tanár szerkesztése</legend>
+          
+          <div class="form-group">
+            <label for="name" class="col-lg-12">név</label>
+            <div class="col-lg-12">
+              <input type="text" class="form-control" id="name" name="name" placeholder="név" value="{{teacher.name}}">
+              
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="room" class="col-lg-12">szoba</label>
+            <div class="col-lg-12">
+              <input type="text" class="form-control" id="room" name="room" placeholder="szoba" value="{{teacher.room}}">
+              
+            </div>
+          </div>
+         
+          <div class="form-group">
+            <div class="col-lg-12">
+              <button type="reset" class="btn btn-default">Mégsem</button>
+              <button type="submit" class="btn btn-primary">Szerkesztés</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      {{else}}
+        <div class="alert alert-danger">
+           A tanár nem érhető el.
+        </div>
+      {{/if}}
+    </div>
+  </div>
+  {{/if}}
+  
+  {{#if editCourse}}
+  <div class="col-md-6 col-md-offset-6">
+    <div class="well bs-component">
+      {{#if course}}
+      <form class="form-horizontal" method="post" action="/admin/edit/course/{{course.id}}">
+        <fieldset>
+          <legend>Kurzus szerkesztése</legend>
+          
+          
+          <div class="form-group">
+            <label for="subject" class="col-lg-2 control-label">tárgy</label>
+            <div class="col-lg-10">
+              <select class="form-control" id="subject" name="subject" readonly>
+                  <option value="{{course.subject.id}}">{{course.subject.subject}} ({{course.subject.credits}} kredit) </option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="teacher" class="col-lg-2 control-label">tanár</label>
+            <div class="col-lg-10">
+              <select class="form-control" id="teacher" name="teacher">
+                {{#each teachers as |t|}}
+                  <option value="{{t.id}}">{{t.name}} ({{t.room}})</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+          
+
+           
+          <div class="form-group">
+            <label for="time" class="col-lg-2 control-label">időpont</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="time" name="time" placeholder="időpont" value="{{course.time}}" >
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="location" class="col-lg-2 control-label">helyszín</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="location" name="location" placeholder="helyszín" value="{{course.location}}" >
+            </div>
+          </div>
+          
+          
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="reset" class="btn btn-default">Mégsem</button>
+              <button type="submit" class="btn btn-primary">Szerkesztés</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      {{else}}
+        <div class="alert alert-danger">
+           A kurzus nem érhető el.
+        </div>
+      {{/if}}
+    </div>
+  </div>
+  {{/if}}
+
+  
+</div>
