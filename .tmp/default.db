@@ -8,7 +8,7 @@
         "username": "admin",
         "password": "$2a$10$JBXaYWsaQgwFTkx.9uzYiekimd7mEDIfwleai./zLBbPq4pOu3Lme",
         "name": "János Admin",
-        "admin": false,
+        "admin": true,
         "createdAt": "2015-11-09T23:31:17.264Z",
         "updatedAt": "2015-11-09T23:31:17.264Z",
         "id": 1
