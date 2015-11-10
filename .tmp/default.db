@@ -6,11 +6,11 @@
     "user": [
       {
         "username": "admin",
-        "password": "$2a$10$JBXaYWsaQgwFTkx.9uzYiekimd7mEDIfwleai./zLBbPq4pOu3Lme",
+        "password": "$2a$10$Bc2cn6/MrJglCEkc.rIvLOkmfLAWJeAnfFONrCBw.17yyuuenoXd6",
         "name": "János Admin",
         "admin": true,
-        "createdAt": "2015-11-09T23:31:17.264Z",
-        "updatedAt": "2015-11-09T23:31:17.264Z",
+        "createdAt": "2015-11-10T19:17:11.910Z",
+        "updatedAt": "2015-11-10T19:17:11.910Z",
         "id": 1
       }
     ],

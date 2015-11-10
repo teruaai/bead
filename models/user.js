@@ -25,8 +25,7 @@ module.exports = {
         
         courses: {
             collection: 'course',
-            via: 'users',
-            dominant: true
+            via: 'users'
         },
         
         validPassword: function (password) {

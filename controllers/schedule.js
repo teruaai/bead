@@ -3,12 +3,25 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function (req, res) {
-    req.app.models.course.find()
-    .populate('users', { where: {id: req.user.id} })
+    /*req.app.models.course.find()
+    .populate('users', {id: req.user.id}) // nope
     .populate('teacher').populate('subject')
     .then(function (courses) {
         res.render('list', { courses: courses });
-    });
+    });*/
+    
+    req.app.models.user.findOne({ id: req.user.id }).populate('courses').then(function (user) {
+        var ids = user.courses.map(function (e) {
+            return e.id;
+        });
+        
+        req.app.models.course.find({ id: ids })
+        .populate('teacher')
+        .populate('subject')
+        .then(function (courses) {
+            res.render('list', { courses: courses, messages: req.flash() });
+        });
+    })
 });
 
 
@@ -21,8 +34,6 @@ router.get('/new', function (req, res) {
 router.get('/delete/:id', function (req, res) {
     req.app.models.user.findOne({ id: req.user.id }).populate('courses').then(function (user) {
         if (!user) return res.redirect('/auth/logout');
-        
-        console.log(user);
         
         user.courses.remove(req.params.id);
         user.save(function () {
