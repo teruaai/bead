@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/mocha/bin/mocha **/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -30,5 +30,9 @@
     "sails-disk": "^0.10.8",
     "sails-memory": "^0.10.5",
     "waterline": "^0.10.26"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.3"
   }
 }
